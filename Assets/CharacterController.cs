@@ -14,12 +14,7 @@ public class CharacterController : MonoBehaviour {
 
     void Update() {
 
-      if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-        anim.SetBool("moving", true);
-      } else {
-        anim.SetBool("moving", false);
-
-      }
+      TrackMovementForAnimation();
 
       Jump();
       Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
@@ -36,6 +31,14 @@ public class CharacterController : MonoBehaviour {
   void OnTriggerEnter2D(Collider2D other) {
     if(other.gameObject.CompareTag("Coins")) {
       Destroy(other.gameObject);
+    }
+  }
+
+  void TrackMovementForAnimation() {
+    if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+      anim.SetBool("moving", true);
+    } else {
+      anim.SetBool("moving", false);
     }
   }
 }
