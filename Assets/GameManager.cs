@@ -11,7 +11,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Restart() {
-        SceneManager.LoadScene("2d-platformer");
+    public void Restart() {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void PlayAgain() {
+        SceneManager.LoadScene("LevelOne");
     }
 }
