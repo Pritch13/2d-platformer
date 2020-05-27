@@ -7,13 +7,13 @@ public class CharacterController : MonoBehaviour {
     public float moveSpeed = 5f;
     public float jumpHeight = 15f;
     private Animator anim;
+    public Rigidbody2D rb;
 
     void Start() {
       anim = GetComponent<Animator>();
     }
 
     void Update() {
-
       TrackMovementForAnimation();
 
       Jump();
@@ -22,11 +22,11 @@ public class CharacterController : MonoBehaviour {
       
     }
 
-  void Jump() {
-    if(Input.GetKeyDown("space")) {
-      gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+    void Jump() {
+      if(Input.GetKeyDown("space")) {
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+      }
     }
-  }
 
   void OnTriggerEnter2D(Collider2D other) {
     if(other.gameObject.CompareTag("Coins")) {
@@ -40,5 +40,10 @@ public class CharacterController : MonoBehaviour {
     } else {
       anim.SetBool("moving", false);
     }
+
+    if(rb.position.y < -5) {
+      FindObjectOfType<GameManager>().EndGame();
+    }
+
   }
 }
