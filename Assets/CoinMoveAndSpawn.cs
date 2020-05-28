@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CoinMoveAndSpawn : MonoBehaviour
 {
-    public float speed;
     public GameObject Coins;
     public float respawnTime;
     private Vector2 screenBounds;
@@ -15,15 +14,9 @@ public class CoinMoveAndSpawn : MonoBehaviour
         StartCoroutine(coinWave());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position += Vector3.left * speed * Time.deltaTime;
-    }
-
     void SpawnCoin() {
         GameObject newCoin = Instantiate(Coins);
-        newCoin.transform.position = new Vector2(screenBounds.x + 1, 0.3f);
+        newCoin.transform.position = new Vector2(screenBounds.x + 6, Random.Range(1,4));
     }
     
     IEnumerator coinWave() {
