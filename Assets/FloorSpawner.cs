@@ -5,7 +5,7 @@ using UnityEngine;
 public class FloorSpawner : MonoBehaviour
 {
     
-    
+
     public GameObject RandomFloor;
     public float respawnTime;
     private Vector2 screenBounds;
