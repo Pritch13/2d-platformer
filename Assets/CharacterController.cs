@@ -41,7 +41,7 @@ public class CharacterController : MonoBehaviour {
       anim.SetBool("moving", false);
     }
 
-    if(rb.position.y < -5) {
+    if(rb.position.y < -6) {
       FindObjectOfType<GameManager>().EndGame();
     }
 
