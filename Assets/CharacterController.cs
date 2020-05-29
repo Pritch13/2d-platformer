@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour {
     public float jumpHeight = 15f;
     private Animator anim;
     public Rigidbody2D rb;
+    private GameObject character;
 
     void Start() {
       anim = GetComponent<Animator>();
@@ -15,7 +16,6 @@ public class CharacterController : MonoBehaviour {
 
     void Update() {
       TrackMovementForAnimation();
-
       Jump();
       Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
       transform.position += movement * Time.deltaTime * moveSpeed;
@@ -40,6 +40,17 @@ public class CharacterController : MonoBehaviour {
     } else {
       anim.SetBool("moving", false);
     }
+
+    Vector3 characterScale = transform.localScale;
+
+    if(Input.GetAxis("Horizontal") < 0) {
+      characterScale.x = -0.5f;
+    }
+      if(Input.GetAxis("Horizontal") > 0) {
+      characterScale.x = 0.5f;
+    }
+
+    transform.localScale = characterScale;
 
     if(rb.position.y < -6) {
       FindObjectOfType<GameManager>().EndGame();
