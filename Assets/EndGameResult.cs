@@ -21,5 +21,10 @@ public class EndGameResult : MonoBehaviour
         void GetResult() {
         score = ScoreManager.instance.score;
         text.text = "Score: " +score.ToString();
+
+        if(score > PlayerPrefs.GetInt("HighScore")) {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+        
     }
 }

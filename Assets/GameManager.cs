@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayAgain() {
+        SceneManager.LoadScene("Start");
+    }
+
+    public void PlayGame() {
         SceneManager.LoadScene("LevelOne");
     }
 }

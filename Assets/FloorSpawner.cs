@@ -22,7 +22,7 @@ public class FloorSpawner : MonoBehaviour
     
     IEnumerator floorWave() {
         while(true){
-            yield return new WaitForSeconds(Random.Range(0.25f, 1.5f));
+            yield return new WaitForSeconds(Random.Range(0.4f, 1.5f));
             SpawnFloor();
         }
     }
