@@ -6,6 +6,7 @@ public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 5f;
     public float jumpHeight = 15f;
+    public bool isGrounded = false;
     private Animator anim;
     public Rigidbody2D rb;
     private GameObject character;
@@ -23,7 +24,7 @@ public class CharacterController : MonoBehaviour {
     }
 
     void Jump() {
-      if(Input.GetKeyDown("space")) {
+      if(Input.GetKeyDown("space") && isGrounded) {
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
       }
     }

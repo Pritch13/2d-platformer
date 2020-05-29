@@ -17,7 +17,7 @@ public class FloorSpawner : MonoBehaviour
 
     void SpawnFloor() {
         GameObject newFloor = Instantiate(RandomFloor);
-        newFloor.transform.position = new Vector2(screenBounds.x + 1, 0);
+        newFloor.transform.position = new Vector2(screenBounds.x + 1, GameObject.Find("Floor").transform.position.y);
     }
     
     IEnumerator floorWave() {
