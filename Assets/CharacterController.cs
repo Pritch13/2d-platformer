@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour {
     public float moveSpeed = 5f;
     public float jumpHeight = 15f;
     public bool isGrounded = false;
+    public AudioSource coinCollect;
     private Animator anim;
     public Rigidbody2D rb;
     private GameObject character;
@@ -31,6 +32,7 @@ public class CharacterController : MonoBehaviour {
 
   void OnTriggerEnter2D(Collider2D other) {
     if(other.gameObject.CompareTag("Coins")) {
+      coinCollect.Play();
       Destroy(other.gameObject);
     }
   }
