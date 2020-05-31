@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Grounded : MonoBehaviour
 {
-    GameObject Character;
+    public GameObject Character;
+    private Animator anim;
+
 
     private void Start() {
         Character = gameObject.transform.parent.gameObject;
