@@ -39,7 +39,6 @@ public class CharacterController : MonoBehaviour {
     }
 
     void Jump() {
-      Debug.Log(isGrounded);
       if(Input.GetKeyDown("space") && isGrounded) {
         anim.SetBool("jumped", true);
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);

@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioSource buttonPress;
     bool gameHasEnded = false;
     public void EndGame() {
         if(gameHasEnded == false) {
@@ -21,5 +22,9 @@ public class GameManager : MonoBehaviour
 
     public void PlayGame() {
         SceneManager.LoadScene("LevelOne");
+    }
+
+    public void PlaySelectSound() {
+        buttonPress.Play();
     }
 }
