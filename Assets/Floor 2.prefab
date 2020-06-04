@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8101748414918613317}
   - component: {fileID: 8101748414918613323}
   - component: {fileID: 1247295608941761060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 8101748415724176743}
   - component: {fileID: 8101748415724176736}
   - component: {fileID: 8101748415724176742}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8101748415775175303}
   - component: {fileID: 8101748415775175296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

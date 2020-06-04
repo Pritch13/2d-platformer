@@ -7,17 +7,24 @@ public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 5f;
     public float jumpHeight = 15f;
-    public bool isGrounded = false;
     public AudioSource coinCollect;
     private Animator anim;
     public Rigidbody2D rb;
     private GameObject character;
+
+    public Transform groundCheck;
+    public bool isGrounded;
+    public float checkRadius;
+    public LayerMask whatIsGround;
 
     void Start() {
       anim = GetComponent<Animator>();
     }
 
     void Update() {
+
+    isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+
       TrackMovementForAnimation();
       Jump();
       Move();
@@ -27,11 +34,12 @@ public class CharacterController : MonoBehaviour {
       Vector3 uiMove = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0f, 0f);
       transform.position += uiMove * Time.deltaTime * moveSpeed;
 
-            Vector3 keyMovement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+      Vector3 keyMovement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
       transform.position += keyMovement * Time.deltaTime * moveSpeed;
     }
 
     void Jump() {
+      Debug.Log(isGrounded);
       if(Input.GetKeyDown("space") && isGrounded) {
         anim.SetBool("jumped", true);
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
