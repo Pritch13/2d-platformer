@@ -16,7 +16,7 @@ public class CoinMoveAndSpawn : MonoBehaviour
 
     void SpawnCoin() {
         GameObject newCoin = Instantiate(Coins);
-        newCoin.transform.position = new Vector2(screenBounds.x + 6, Random.Range(1,4));
+        newCoin.transform.position = new Vector2(screenBounds.x + 6, Random.Range(-3f,0f));
         Destroy(newCoin, 5f);
     }
     

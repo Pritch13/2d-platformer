@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class CharacterController : MonoBehaviour {
 
     public float moveSpeed = 5f;
     public float jumpHeight = 15f;
     public bool isGrounded = false;
-    public Joystick joystick;
     public AudioSource coinCollect;
     private Animator anim;
     public Rigidbody2D rb;
@@ -24,13 +24,10 @@ public class CharacterController : MonoBehaviour {
     }
 
     void Move() {
+      Vector3 uiMove = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), 0f, 0f);
+      transform.position += uiMove * Time.deltaTime * moveSpeed;
 
-    if(joystick.Horizontal >= .2f || joystick.Horizontal <= -.2f) {
-        Vector3 stickMovement = new Vector3(joystick.Horizontal, 0f, 0f);
-        transform.position += stickMovement * Time.deltaTime * moveSpeed;
-    }
-
-      Vector3 keyMovement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+            Vector3 keyMovement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
       transform.position += keyMovement * Time.deltaTime * moveSpeed;
     }
 
@@ -39,9 +36,10 @@ public class CharacterController : MonoBehaviour {
         anim.SetBool("jumped", true);
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
       }
+    }
 
-      if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isGrounded) {
-        anim.SetBool("jumped", true);
+    public void JumpButton() {
+      if(isGrounded) {
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
       }
     }
@@ -54,7 +52,7 @@ public class CharacterController : MonoBehaviour {
   }
 
   void TrackMovementForAnimation() {
-    if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || joystick.Horizontal <= -.2f || joystick.Horizontal >= .2f) {
+    if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || CrossPlatformInputManager.GetAxis("Horizontal") > 0 || CrossPlatformInputManager.GetAxis("Horizontal") < 0) {
       anim.SetBool("moving", true);
     } else {
       anim.SetBool("moving", false);
@@ -62,10 +60,10 @@ public class CharacterController : MonoBehaviour {
 
     Vector3 characterScale = transform.localScale;
 
-    if(Input.GetAxis("Horizontal") < 0 || joystick.Horizontal <= -.2f) {
+    if(Input.GetAxis("Horizontal") < 0  || CrossPlatformInputManager.GetAxis("Horizontal") < 0) {
       characterScale.x = -0.7f;
     }
-      if(Input.GetAxis("Horizontal") > 0 || joystick.Horizontal >= .2f) {
+      if(Input.GetAxis("Horizontal") > 0 || CrossPlatformInputManager.GetAxis("Horizontal") > 0 ) {
       characterScale.x = 0.7f;
     }
 
